@@ -3,11 +3,18 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function GoogleSignInButton() {
+interface GoogleSignInButtonProps {
+  onClick?: () => void;
+}
+
+export default function GoogleSignInButton({
+  onClick,
+}: GoogleSignInButtonProps) {
   const [isPressed, setIsPressed] = useState(false);
 
   return (
     <button
+      onClick={onClick}
       // Mobile
       onTouchStart={() => setIsPressed(true)}
       onTouchEnd={() => setIsPressed(false)}
