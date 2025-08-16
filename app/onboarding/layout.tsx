@@ -6,7 +6,7 @@ export default function OnboardingLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-svh flex-col items-center bg-gradient">
+    <div className="flex min-h-[100svh] flex-col items-center bg-gradient">
       {children}
     </div>
   );
