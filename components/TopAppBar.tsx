@@ -11,7 +11,7 @@ export default function TopAppBar() {
   };
 
   return (
-    <div className="flex flex-row items-center h-14 p-4">
+    <div className="flex flex-row items-center w-full h-14">
       <button onClick={handleGoBack}>
         <Image
           src={'/icons/chevron-left.svg'}
