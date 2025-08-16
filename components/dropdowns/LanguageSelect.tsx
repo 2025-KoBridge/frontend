@@ -4,13 +4,17 @@ import {
   LanguageDropdown,
   LanguageDropdownProps,
 } from '@/constants/dropdown/languages';
-import { useLanguageStore } from '@/store/languageStore';
+import { useLanguageStore } from '@/stores/languageStore';
+
+interface LanguageSelectDropdownProps {
+  disabled?: boolean;
+  onChange?: (lang: LanguageDropdownProps) => void;
+}
 
 export default function LanguageSelectDropdown({
   disabled = false,
-}: {
-  disabled?: boolean;
-}) {
+  onChange,
+}: LanguageSelectDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { currentLanguage, setLanguage } = useLanguageStore();
 
@@ -18,6 +22,7 @@ export default function LanguageSelectDropdown({
 
   const handleSelect = (lang: LanguageDropdownProps) => {
     setLanguage(lang);
+    if (onChange) onChange(lang);
     setIsOpen(false);
   };
 
@@ -57,10 +62,10 @@ export default function LanguageSelectDropdown({
             <li
               key={lang.code}
               onClick={() => handleSelect(lang)}
-              className="px-5 py-3 cursor-pointer text-trans-cp1-regular hover:bg-gray-100"
+              className="px-4 py-3 cursor-pointer text-trans-cp1-regular hover:bg-gray-100"
             >
               {lang.label}
-              <span className="text-gray-400 text-cp1-regular">
+              <span className="text-gray-400 text-cp1-regular ml-1">
                 {lang.subLabel}
               </span>
             </li>
