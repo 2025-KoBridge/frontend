@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       const result = await googleLogin();
       if (result.success) {
-        router.push(ROUTES.ONBOARDING.SIGNIN);
+        router.push(ROUTES.ONBOARDING.SIGNIN.getStep(1));
       } else {
         alert('로그인 실패');
       }
@@ -25,7 +25,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-svh bg-gradient gap-16">
+    <div className="flex flex-col items-center justify-center h-svh gap-16">
       {/* Logo */}
       <motion.div
         initial={{ scale: 1, y: 144 }}
