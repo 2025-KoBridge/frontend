@@ -3,6 +3,9 @@ export const ROUTES = {
   ONBOARDING: {
     ROOT: '/onboarding',
     LOGIN: '/onboarding/login',
-    SIGNIN: '/onboarding/signin',
+    SIGNIN: {
+      ROOT: '/onboarding/signin',
+      getStep: (step: number) => `/onboarding/signin/step${step}`,
+    },
   },
 };
