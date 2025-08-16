@@ -1,0 +1,20 @@
+{
+  "step1": {
+    "title": "사용할 언어를 골라주세요!\n선택한 언어는 번역에 사용돼요.",
+    "subText": {
+        "vt": "Ngôn ngữ bạn chọn sẽ được sử dụng để dịch.",
+        "en": "Pick a language!\nWe'll use it for translations.",
+        "jp": "選択した言語は翻訳に使用されます。",
+        "chn": "您选择的语言将用于翻译。"
+    }
+  },
+  "step2": {
+    "title": "테마를 선택해주세요!",
+    "subText": {
+        "vt": "Chủ đề bạn chọn sẽ được áp dụng cho toàn bộ ứng dụng.",
+        "en": "Your chosen theme will apply across the app.",
+        "jp": "選択したテーマはアプリ全体に適用されます。",
+        "chn": "您选择的主题将应用于整个应用程序。"
+    }
+  }
+}
