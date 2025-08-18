@@ -2,10 +2,24 @@
   "step1": {
     "title": "사용할 언어를 골라주세요!\n선택한 언어는 번역에 사용돼요.",
     "subText": {
-        "vt": "Ngôn ngữ bạn chọn sẽ được sử dụng để dịch.",
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
         "en": "Pick a language!\nWe'll use it for translations.",
-        "jp": "選択した言語は翻訳に使用されます。",
-        "chn": "您选择的语言将用于翻译。"
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "checkboxText": "내가 원하는 언어가 없어요.",
+    "checkboxSubText": {
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "There's no language I want.",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+    },
+    "bottomSheetTitle": "사용할 수 있는 언어가 무엇인가요?\n나중에 그 언어로 공부할 수 있도록 준비할게요",
+    "bottomSheetSubText": {
+      "vt": "Bạn có thể sử dụng những ngôn ngữ nào?\nChúng tôi sẽ chuẩn bị ngôn ngữ bạn chọn khi nó khả dụng.",
+      "en": "Which language can you use?\nWe'll get your chosen language ready when it's available.",
+      "jp": "あなたはどの言語を使えますか？\n選んだ言語は利用可能になったら準備しておきます。",
+      "chn": "你可以使用哪些语言？\n我们会在所选语言可用时为你准备好。"
     }
   },
   "step2": {
