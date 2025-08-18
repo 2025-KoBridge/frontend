@@ -29,7 +29,7 @@ export default function ProgressBar({
             key={index}
             style={{ width: `${100 / totalSegments}%` }}
             className={`h-full rounded-sm ${
-              isCurrentOrCompleted ? 'bg-yellow-400' : incompleteColor
+              isCurrentOrCompleted ? 'bg-primary' : incompleteColor
             }`}
           ></div>
         );
