@@ -76,7 +76,7 @@ export default function SchoolSelectDropdown({
             <li
               key={school.value || school.label}
               onClick={() => handleSelect(school)}
-              className="px-4 py-3 cursor-pointer text-trans-cp1-regular hover:bg-gray-100"
+              className="px-4 py-3 cursor-pointer text-trans-cp1-regular text-black hover:bg-gray-100"
             >
               {school.label}
               {school.subLabel && (

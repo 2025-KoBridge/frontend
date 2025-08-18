@@ -34,7 +34,7 @@ export default function SelectButton({
       >
         {/* 왼쪽 텍스트 영역 */}
         <div className="flex flex-row flex-1 items-center gap-1">
-          <span className="text-bd2-regular">{text}</span>
+          <span className="text-bd2-regular text-black">{text}</span>
           {subText && (
             <span className="text-trans-cp2-regular text-gray-500">
               {subText}

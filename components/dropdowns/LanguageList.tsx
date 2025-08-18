@@ -29,7 +29,7 @@ function LanguageListItems({
       {codes.map(code => (
         <li
           key={code}
-          className="px-4 py-3 cursor-pointer text-trans-cp1-regular hover:bg-gray-100 flex items-center"
+          className="px-4 py-3 cursor-pointer text-trans-cp1-regular text-black hover:bg-gray-100 flex items-center"
           onClick={() => onSelect(code)}
         >
           {ISO6391.getName(code)}

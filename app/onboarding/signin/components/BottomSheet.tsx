@@ -99,7 +99,7 @@ export default function BottomSheet({
             {/* 회색 그랩바 */}
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1.25 bg-gray-700 rounded-full" />
 
-            <h3 className="text-bd1-bold mt-2">{title}</h3>
+            <h3 className="text-bd1-bold text-black mt-2">{title}</h3>
             <h4 className="pt-3 text-trans-cp2-regular text-gray-500">
               {subText}
             </h4>

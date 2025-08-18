@@ -91,7 +91,7 @@ export default function SignInStep1Page() {
         subText={bottomSheetSubText[currentLanguage.code]}
       >
         <LanguageListDropdown />
-        <p className="mt-auto pt-72 text-bd2-regular">
+        <p className="mt-auto pt-72 text-bd2-regular text-black">
           그 전까지는 한글을 영어로 번역할게요.
         </p>
         <p className="mb-6 text-trans-cp2-regular text-gray-500">
