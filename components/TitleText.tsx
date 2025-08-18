@@ -1,7 +1,8 @@
 import { FONT_CLASS, Language } from '@/constants/languages';
+import { ReactNode } from 'react';
 
 interface TitleTextProps {
-  title: string;
+  title: ReactNode; // JSX도 허용되도록
   subText: Record<Language, string>;
   lang: Language;
   className?: string;
