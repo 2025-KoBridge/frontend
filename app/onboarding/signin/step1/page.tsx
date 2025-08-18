@@ -35,7 +35,7 @@ export default function SignInStep1Page() {
     if (isChecked) {
       setIsSheetOpen(true);
     } else {
-      router.push('/next-page'); // 다음 페이지 라우팅
+      router.push(ROUTES.ONBOARDING.SIGNIN.getStep(2)); // 다음 페이지 라우팅
     }
   };
 
