@@ -1,0 +1,33 @@
+{
+  "voice": {
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "This is ’Kody’ who will study Korean with you.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "characterText":"안녕! 내 목소리를 선택해 줄래?",
+    "characterSubText": {
+        "vt": "Xin chào! Bạn có thể chọn giọng nói của tôi không?",
+        "en": "Hi! Can you choose my voice?",
+        "jp": "こんにちは！私の声を選んでくれませんか？",
+        "chn": "你好！你能选择我的声音吗？"
+    }
+  },
+  "selectVoice": {
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "Please choose Kody's voice.\nYou can change your friend's voice at any time.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    }
+  },
+  "complete" : {
+    "subText": {
+      "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+      "en": "Let's start studying Korean with Kody!",
+      "jp": "言語を選択してください!\n翻訳に使用します。",
+      "chn": "选择一种语言!\n我们将用它进行翻译。"
+    }
+  }
+}
