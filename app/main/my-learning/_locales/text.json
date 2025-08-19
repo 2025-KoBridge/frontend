@@ -1,0 +1,91 @@
+{
+  "intro": {
+    "title": "오늘 공부할 문장들이에요.",
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "These are the phrases that you're going to study today.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "characterText": "주제는 취미와 좋아하는 것들이야.",
+    "characterSubText": {
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "The topics are your hobbies and favorite things.",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+    },
+    "phrase1": {
+        "id": 1,
+        "kor": "너는 취미가 뭐야?",
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your hobby?",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+      },
+    "phrase2": {
+      "id": 2,
+       "kor": "너는 이름이 뭐야?",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your name?",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    },
+    "phrase3": {
+      "id": 3,
+       "kor": "가장 좋아하는게 뭐야?",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your favorite thing?",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    }
+  },
+"step1": {
+    "title": "아래 문장을 말해 봐!\n말할 수 없다면 글로 써 보자.",
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "Say the sentence below!\nIf you can't say it, let's write it.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    }
+    },
+  "intro2": {
+    "title": "코디와 대화하며 문장을 연습해요.",
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "Practice your sentences by talking with Kody.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "characterText": "아래는 오늘의 대화 흐름이야.",
+    "characterSubText": {
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "Below is the flow of today's conversation.",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+    },
+    "phrase1": {
+        "id": 1,
+        "kor": "반갑게 인사하기",
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "Greeting each other warmly",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+      },
+    "phrase2": {
+      "id": 2,
+       "kor": "서로의 취미 공유하기",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "Sharing each other’s hobbies",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    },
+    "phrase3": {
+      "id": 3,
+       "kor": "좋아하는 것 말하기",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "Talking about what you like",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    }
+  }
+}
