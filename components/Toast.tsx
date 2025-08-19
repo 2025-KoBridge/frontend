@@ -36,7 +36,7 @@ export default function Toast({
             animate={{ opacity: 1, y: -50 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.5 }}
-            className="fixed bottom-10 px-6 py-1 rounded-full shadow-lg z-50 text-bd2-regular bg-black-70 text-white"
+            className="fixed bottom-10 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full shadow-lg z-50 text-bd2-regular bg-black-70 text-white max-w-[95vw] text-center"
           >
             {message}
           </motion.div>
