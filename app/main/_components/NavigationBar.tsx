@@ -13,21 +13,24 @@ export default function NavigationBar() {
       label: '나의 학습',
       href: ROUTES.MAIN.MY_LEARNING.ROOT,
       icon: '/icons/nav-book.svg',
+      activeIcon: '/icons/nav-book-blue.svg', // active용 아이콘
     },
     {
       label: '대화',
-      href: ROUTES.MAIN.CONVERSATION,
+      href: ROUTES.MAIN.CONVERSATION.ROOT,
       icon: '/icons/nav-phone.svg',
+      activeIcon: '/icons/nav-phone-blue.svg',
     },
     {
       label: '마이페이지',
       href: ROUTES.MAIN.MY_PAGE,
       icon: '/icons/nav-user.svg',
+      activeIcon: '/icons/nav-user-blue.svg',
     },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white-70 border-t border-gray-900 flex justify-around items-center h-18">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-900 flex justify-around items-center h-18 z-999">
       {navItems.map(item => {
         const isActive = pathname === item.href;
         return (
@@ -36,7 +39,12 @@ export default function NavigationBar() {
             href={item.href}
             className="flex flex-col items-center justify-center gap-2"
           >
-            <Image src={item.icon} alt={item.label} width={24} height={24} />
+            <Image
+              src={isActive ? item.activeIcon : item.icon}
+              alt={item.label}
+              width={24}
+              height={24}
+            />
             <span
               className={
                 isActive
