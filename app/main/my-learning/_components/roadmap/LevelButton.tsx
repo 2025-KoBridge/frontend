@@ -72,30 +72,27 @@ export default function LevelButton({
 
   return (
     <>
-      <div className="relative max-w-[46svw]">
-        {/* 그림자 도형 */}
+      <div className="relative w-full">
+        {/* 그림자 */}
         <div
-          className={`absolute inset-0 rounded-full transition-transform duration-150 translate-y-1 ${shadowBg}`}
+          className={`absolute inset-0 rounded-full ${shadowBg}`}
+          style={{ top: 0 }} // 그림자를 약간 아래로
         />
+
         {/* 실제 버튼 */}
         <button
           onClick={handleClick}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          className={`
-            relative w-full flex flex-col items-center px-3 py-4 rounded-full text-center transition-transform duration-150
-            ${isPressed ? 'translate-y-1' : 'translate-y-0'}
-            ${bg}
-            ${className ?? ''}
-          `}
+          onTouchStart={() => setIsPressed(true)}
+          onTouchEnd={() => setIsPressed(false)}
+          className={`relative z-10 w-full flex flex-col items-center px-3 py-4 rounded-full text-center transition-transform duration-150
+      ${isPressed ? 'translate-y-0' : '-translate-y-2'}
+      ${bg} ${className ?? ''}`}
         >
-          {/* 레벨 */}
           <div
             className={`text-trans-cp3-regular ${levelTextColor} ${levelBg} px-2 py-1 mb-3 rounded-xl`}
           >
             Lv. {levelNum}
           </div>
-          {/* 텍스트 */}
           <span className={`text-bd2-bold ${textColor}`}>{text}</span>
           {subText && (
             <span className={`text-trans-cp2-regular ${subTextColor}`}>
@@ -104,6 +101,7 @@ export default function LevelButton({
           )}
         </button>
       </div>
+
       {/* 모달 */}
       {isModalOpen && (
         <LevelModal
