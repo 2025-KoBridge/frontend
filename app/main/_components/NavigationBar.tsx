@@ -11,7 +11,7 @@ export default function NavigationBar() {
   const navItems = [
     {
       label: '나의 학습',
-      href: ROUTES.MAIN.MY_LEARNING,
+      href: ROUTES.MAIN.MY_LEARNING.ROOT,
       icon: '/icons/nav-book.svg',
     },
     {
