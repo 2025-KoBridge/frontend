@@ -7,6 +7,7 @@ interface ButtonProps {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  btnColor?: string;
 }
 
 export default function Button({
@@ -15,6 +16,7 @@ export default function Button({
   className,
   onClick,
   disabled = false,
+  btnColor = 'bg-primary',
 }: ButtonProps) {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -25,7 +27,7 @@ export default function Button({
     setIsPressed(false);
 
   return (
-    <div className="relative">
+    <div className={`relative w-full ${className}`}>
       {/* 직사각형 그림자 */}
       <div
         className={`absolute inset-0 rounded-2xl transition-transform duration-150 translate-y-1
@@ -40,7 +42,7 @@ export default function Button({
         className={`
           relative w-full flex flex-row items-center justify-center gap-1 py-3 rounded-2xl text-bd2-bold transition-transform duration-150
           ${!disabled && isPressed ? 'translate-y-1' : 'translate-y-0'}
-          ${disabled ? 'bg-gray-900 text-gray-500 cursor-not-allowed' : 'bg-primary text-black'}
+          ${disabled ? 'bg-gray-900 text-gray-500 cursor-not-allowed' : `${btnColor} text-black`}
           ${className ? className : ''}
         `}
       >
