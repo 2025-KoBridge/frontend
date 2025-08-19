@@ -23,7 +23,10 @@ export const ROUTES = {
         step: 'intro1' | 'step1' | 'step2' | 'step3' | 'intro2' | 'ending',
       ) => `/main/my-learning/level-${level}/${step}`,
     },
-    CONVERSATION: '/main/conversation',
+    CONVERSATION: {
+      ROOT: '/main/conversation',
+      CALLING: '/main/conversation/calling',
+    },
     MY_PAGE: '/main/my-page',
   },
 };
