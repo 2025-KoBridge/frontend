@@ -21,7 +21,7 @@ export default function CharacterText({
     <div className="flex flex-col items-center p-4 w-full">
       {/* 텍스트 영역 */}
       <div className="text-center mb-4 px-6 py-4 bg-white rounded-2xl">
-        <h2 className="text-secondary-300 text-lg font-bold flex items-center justify-center gap-1">
+        <h2 className="text-secondary-300 text-bd1-bold flex items-center justify-center gap-1">
           {title}
           {audio && (
             <Image
@@ -36,7 +36,7 @@ export default function CharacterText({
         {/* 구분선 */}
         <div className="w-full border-b border-dashed border-gray-700 my-1"></div>
         <p
-          className={`text-gray-400 text-sm mt-1 ${FONT_CLASS[currentLanguage.code]}`}
+          className={`text-gray-500 text-trans-cp2-regular mt-1 ${FONT_CLASS[currentLanguage.code]}`}
         >
           {subtitle}
         </p>
