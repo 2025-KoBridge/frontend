@@ -87,5 +87,38 @@
         "jp": "あなたの名前は何ですか？",
         "chn": "你叫什么名字？"
     }
+  },
+  "step3": {
+    "title": "오늘도 고생했어요!\n배운 내용을 확인해 보세요.",
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "You did a great job today, too!\nCheck out what you've learned.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "phrase1": {
+        "id": 1,
+        "kor": "너는 취미가 뭐야?",
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your hobby?",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+      },
+    "phrase2": {
+      "id": 2,
+       "kor": "너는 이름이 뭐야?",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your name?",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    },
+    "phrase3": {
+      "id": 3,
+       "kor": "가장 좋아하는게 뭐야?",
+       "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "What is your favorite thing?",
+        "jp": "あなたの名前は何ですか？",
+        "chn": "你叫什么名字？"
+    }
   }
 }
