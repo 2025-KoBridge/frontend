@@ -15,7 +15,14 @@ export const ROUTES = {
   },
   MAIN: {
     ROOT: '/main',
-    MY_LEARNING: '/main/my-learning',
+    MY_LEARNING: {
+      ROOT: '/main/my-learning',
+      getLevel: (level: number) => `/main/my-learning/level-${level}`,
+      getStep: (
+        level: number,
+        step: 'intro1' | 'step1' | 'step2' | 'step3' | 'intro2' | 'ending',
+      ) => `/main/my-learning/level-${level}/${step}`,
+    },
     CONVERSATION: '/main/conversation',
     MY_PAGE: '/main/my-page',
   },
