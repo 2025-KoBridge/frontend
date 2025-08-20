@@ -1,0 +1,92 @@
+{
+  "step1": {
+    "title": "사용할 언어를 골라주세요!\n선택한 언어는 번역에 사용돼요.",
+    "subText": {
+        "vt": "Chọn một ngôn ngữ!\nChúng tôi sẽ sử dụng nó để dịch.",
+        "en": "Pick a language!\nWe'll use it for translations.",
+        "jp": "言語を選択してください!\n翻訳に使用します。",
+        "chn": "选择一种语言!\n我们将用它进行翻译。"
+    },
+    "checkboxText": "내가 원하는 언어가 없어요.",
+    "checkboxSubText": {
+        "vt": "Không có ngôn ngữ mà tôi muốn.",
+        "en": "There's no language I want.",
+        "jp": "私の欲しい言語がありません。",
+        "chn": "没有我想要的语言。"
+    },
+    "bottomSheetTitle": "사용할 수 있는 언어가 무엇인가요?\n나중에 그 언어로 공부할 수 있도록 준비할게요",
+    "bottomSheetSubText": {
+      "vt": "Bạn có thể sử dụng những ngôn ngữ nào?\nChúng tôi sẽ chuẩn bị ngôn ngữ bạn chọn khi nó khả dụng.",
+      "en": "Which language can you use?\nWe'll get your chosen language ready when it's available.",
+      "jp": "あなたはどの言語を使えますか？\n選んだ言語は利用可能になったら準備しておきます。",
+      "chn": "你可以使用哪些语言？\n我们会在所选语言可用时为你准备好。"
+    }
+  },
+  "step2": {
+    "title": "사용할 이름이나 닉네임을\n적어 주세요.",
+    "subText": {
+        "vt": "Tên này sẽ được sử dụng trong toàn bộ ứng dụng.",
+        "en": "This name will be used across the app.",
+        "jp": "この名前はアプリ全体で使用されます。",
+        "chn": "此名称将在整个应用程序中使用。"
+    },
+    "usernameTitle": "내 이름/닉네임은...",
+    "usernameSubText": {
+        "vt": "Tên/Nickname của tôi là...",
+        "en": "My name/nickname is...",
+        "jp": "私の名前／ニックネームは...",
+        "chn": "我的名字/昵称是..."
+    }
+  },
+  "step3": {
+    "title": "다음으로,\n나이를 알려주세요.",
+    "subText": {
+        "vt": "Tuổi này sẽ được sử dụng trong toàn bộ ứng dụng.",
+        "en": "Next,\nplease tell us your age.",
+        "jp": "次に、年齢を教えてください。",
+        "chn": "接下来，请告诉我们您的年龄。"
+    },
+    "ageTitle": "나의 나이는...",
+    "ageSubText": {
+        "vt": "Tuổi của tôi là...",
+        "en": "My age is...",
+        "jp": "私の年齢は...",
+        "chn": "我的年龄是..."
+    },
+    "ageEndText" : {
+      "vt": "Tôi tuổi.",
+      "en": "years old.",
+      "jp": "歳です。",
+      "chn": "岁。"
+    }
+  },
+  "step4": {
+    "title": "마지막으로,\n다니는 학교와 학년 알려주세요.",
+    "subText": {
+        "vt": "Tuổi này sẽ được sử dụng trong toàn bộ ứng dụng.",
+        "en": "Finally,\nplease tell us your school and grade.",
+        "jp": "次に、年齢を教えてください。",
+        "chn": "接下来，请告诉我们您的年龄。"
+    },
+    "schoolTitle": "내가 다니는 학교는...",
+    "schoolSubText": {
+        "vt": "Tuổi của tôi là...",
+        "en": "My school is...",
+        "jp": "私の年齢は...",
+        "chn": "我的年龄是..."
+    },
+    "gradeTitle": "나의 학년은...",
+    "gradeSubText": {
+        "vt": "Tuổi của tôi là...",
+        "en": "My grade is...",
+        "jp": "私の年齢は...",
+        "chn": "我的年龄是..."
+    },
+    "gradeEndText" : {
+      "vt": "Tôi tuổi.",
+      "en": "grade.",
+      "jp": "歳です。",
+      "chn": "岁。"
+    }
+  }
+}
