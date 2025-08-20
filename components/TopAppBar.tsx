@@ -15,7 +15,7 @@ export default function TopAppBar({ title }: TopAppBarProps) {
   };
 
   return (
-    <div className="relative flex flex-row items-center justify-center w-full my-4">
+    <div className="relative flex flex-row items-center justify-center w-full my-6">
       {/* 뒤로가기 버튼 */}
       <button onClick={handleGoBack} className="absolute left-0">
         <Image
