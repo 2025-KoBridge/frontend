@@ -20,6 +20,7 @@ export default function LevelStep1Page() {
   const { title, subText } = text.step1;
 
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [inputType, setInputType] = useState<'mic' | 'keyboard'>('keyboard');
 
   //TODO: API 연결
   const phrases = [
@@ -74,6 +75,51 @@ export default function LevelStep1Page() {
     }
   };
 
+  const handleVoiceSubmit = async (blob: Blob) => {
+    setAudioBlob(blob);
+    setShowInput(true);
+
+    try {
+      const base64 = await blobToBase64(blob);
+
+      const res = await fetch('/api/deepgram/transcribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ audioBase64: base64 }),
+      });
+
+      const data = await res.json();
+
+      console.log('STT Response:', data);
+
+      if (data.transcript) {
+        setInputText(data.transcript);
+        console.log('Recognized Text:', data.transcript);
+      } else {
+        console.error('STT 실패:', data.error);
+      }
+    } catch (err) {
+      console.error('STT 에러:', err);
+    } finally {
+      setShowEvaluation(true);
+    }
+  };
+
+  // Blob → Base64 변환
+  function blobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        // data:audio/mp4;base64,... 부분 제거
+        const base64 = result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
   return (
     <div className="flex flex-col h-full relative">
       <ProgressBar
@@ -92,7 +138,7 @@ export default function LevelStep1Page() {
         </p>
       </MotionFadeIn>
 
-      <MotionFadeIn transition={{ duration: 1, delay: 1, ease: 'easeIn' }}>
+      <MotionFadeIn transition={{ duration: 1, delay: 1, ease: 'easeInOut' }}>
         <PhrasePracticeText
           key={resetKey}
           phrase={phrases[currentIndex].phrase}
@@ -100,29 +146,35 @@ export default function LevelStep1Page() {
           translation={phrases[currentIndex].translation}
           inputText={inputText}
           showEvaluation={showEvaluation}
+          evaluationType={inputType}
         />
       </MotionFadeIn>
 
       {!showInput && !showEvaluation && (
         <div className="flex justify-center mt-auto pb-0">
-          <VoiceKeyboard
-            onClick={(mode, data) => {
-              if (mode === 'keyboard' && typeof data === 'string') {
-                setInputText(data);
-                setShowInput(true);
-                setShowEvaluation(true);
-                setAudioBlob(null); // 키보드 입력이면 오디오 초기화
-              }
-              if (mode === 'mic' && data instanceof Blob) {
-                console.log('녹음된 오디오:', data);
-                setAudioBlob(data); // 오디오 Blob 저장
-                setShowInput(true);
-                setShowEvaluation(true);
-              }
-            }}
-          />
+          <MotionFadeIn
+            transition={{ duration: 0.3, delay: 1.8, ease: 'easeIn' }}
+          >
+            <VoiceKeyboard
+              onClick={(mode, data) => {
+                if (mode === 'keyboard' && typeof data === 'string') {
+                  setInputText(data);
+                  setInputType('keyboard');
+                  setShowInput(true);
+                  setShowEvaluation(true);
+                  setAudioBlob(null); // 키보드 입력이면 오디오 초기화
+                }
+                if (mode === 'mic' && data instanceof Blob) {
+                  console.log('녹음된 오디오:', data);
+                  setInputType('mic');
+                  handleVoiceSubmit(data);
+                }
+              }}
+            />
+          </MotionFadeIn>
         </div>
       )}
+
       <AnimatePresence mode="wait" initial={false}>
         <div className="flex flex-row mt-auto pb-6 gap-2 min-h-[64px]">
           {showEvaluation && (
