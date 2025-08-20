@@ -19,6 +19,8 @@ export default function LevelStep1Page() {
   const { currentLanguage } = useLanguageStore();
   const { title, subText } = text.step1;
 
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+
   //TODO: API 연결
   const phrases = [
     {
@@ -102,16 +104,18 @@ export default function LevelStep1Page() {
       </MotionFadeIn>
 
       {!showInput && !showEvaluation && (
-        <div className="flex justify-center mt-auto pb-16">
+        <div className="flex justify-center mt-auto pb-0">
           <VoiceKeyboard
             onClick={(mode, data) => {
               if (mode === 'keyboard' && typeof data === 'string') {
                 setInputText(data);
                 setShowInput(true);
                 setShowEvaluation(true);
+                setAudioBlob(null); // 키보드 입력이면 오디오 초기화
               }
               if (mode === 'mic' && data instanceof Blob) {
                 console.log('녹음된 오디오:', data);
+                setAudioBlob(data); // 오디오 Blob 저장
                 setShowInput(true);
                 setShowEvaluation(true);
               }
@@ -149,6 +153,23 @@ export default function LevelStep1Page() {
           )}
         </div>
       </AnimatePresence>
+      {/* 녹음된 오디오 재생 / 다운로드 */}
+      {/* {audioBlob && (
+        <div className="flex flex-col items-center gap-2 mt-4 pb-6">
+          <audio controls src={URL.createObjectURL(audioBlob)} />
+          <button
+            onClick={() => {
+              const a = document.createElement('a');
+              a.href = URL.createObjectURL(audioBlob);
+              a.download = `recording.mp4`;
+              a.click();
+            }}
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            다운로드
+          </button>
+        </div>
+      )} */}
     </div>
   );
 }

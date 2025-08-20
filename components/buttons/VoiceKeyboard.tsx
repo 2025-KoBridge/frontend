@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, KeyboardEvent } from 'react';
+import { useState, KeyboardEvent, useEffect } from 'react';
 import Image from 'next/image';
 import TextFieldChat from '../textfields/TextFieldChat';
 
@@ -17,43 +17,66 @@ export default function VoiceKeyboard({
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
     null,
   );
-  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
+  const [audioURL, setAudioURL] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
 
-  // 마이크 버튼 클릭 → 녹음 시작
+  // 마이크 권한 먼저 띄우기
+  useEffect(() => {
+    const requestMicPermission = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
+        stream.getTracks().forEach(track => track.stop());
+      } catch (err) {
+        console.warn('마이크 권한 거부됨', err);
+      }
+    };
+    requestMicPermission();
+  }, []);
+
+  // 녹음 시작
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream);
-      setMediaRecorder(recorder);
-      setAudioChunks([]);
+      const mimeType = MediaRecorder.isTypeSupported('audio/mp4')
+        ? 'audio/mp4'
+        : MediaRecorder.isTypeSupported('audio/webm')
+          ? 'audio/webm'
+          : '';
+      if (!mimeType) return alert('녹음을 지원하지 않는 브라우저입니다.');
 
-      recorder.ondataavailable = event => {
-        if (event.data.size > 0) {
-          setAudioChunks(prev => [...prev, event.data]);
-        }
+      const recorder = new MediaRecorder(stream, { mimeType });
+      setMediaRecorder(recorder);
+
+      const chunks: Blob[] = [];
+
+      recorder.ondataavailable = e => {
+        if (e.data.size > 0) chunks.push(e.data);
       };
 
       recorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-        console.log('🎙️ 녹음 완료 Blob:', audioBlob);
-        onClick?.('mic', audioBlob);
+        const blob = new Blob(chunks, { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        setAudioURL(url);
+        onClick?.('mic', blob);
+        setIsRecording(false);
       };
 
       recorder.start();
       setIsRecording(true);
     } catch (err) {
       console.error('마이크 권한 필요:', err);
+      alert('마이크 권한을 허용해주세요.');
     }
   };
 
   const stopRecording = () => {
-    mediaRecorder?.stop();
+    if (mediaRecorder) mediaRecorder.stop();
     setIsRecording(false);
   };
 
-  // 모드 전환
   const handleToggle = (newMode: 'mic' | 'keyboard') => {
     setMode(newMode);
     if (newMode === 'mic') {
@@ -64,7 +87,7 @@ export default function VoiceKeyboard({
     }
   };
 
-  // 입력 완료 시 상위 전달
+  // 키보드 입력
   const handleInputSubmit = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputValue.trim()) {
       onClick?.('keyboard', inputValue);
@@ -74,58 +97,90 @@ export default function VoiceKeyboard({
 
   return (
     <div className="flex flex-col items-center">
-      {/* 버튼 + 입력창을 담는 고정 영역 */}
+      {/* 버튼 + 입력창 영역 */}
       <div className="relative w-full h-20 flex flex-col items-center">
-        {/* 토글 버튼 영역 (항상 중앙 고정) */}
+        {/* 토글 버튼 */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-12 flex items-center justify-center">
-          {/* 회색 직사각형 바 */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-[118px] h-[42px] bg-gray-950 rounded-full" />
           </div>
-          {/* 마이크 배경 원 */}
+
+          {/* 마이크 배경 */}
           <div className="absolute left-0 top-1/2 -translate-y-6 w-14 h-14 flex items-center justify-center">
             <div
-              className={`w-14 h-14 rounded-full ${
-                mode === 'mic' ? 'bg-primary-dimensional' : 'bg-transparent'
-              }`}
+              className={`w-14 h-14 rounded-full ${mode === 'mic' ? 'bg-primary-dimensional' : 'bg-transparent'}`}
             />
           </div>
 
-          {/* 키보드 배경 원 */}
+          {/* 키보드 배경 */}
           <div className="absolute right-0 top-1/2 -translate-y-6 w-14 h-14 flex items-center justify-center">
             <div
-              className={`w-14 h-14 rounded-full ${
-                mode === 'keyboard' ? 'bg-secondary' : 'bg-transparent'
-              }`}
+              className={`w-14 h-14 rounded-full ${mode === 'keyboard' ? 'bg-secondary' : 'bg-transparent'}`}
             />
           </div>
+
           {/* 마이크 버튼 */}
           <button
-            onClick={() => handleToggle('mic')}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full transition ${
+            onMouseDown={() => {
+              startRecording();
+              setIsRecording(true);
+            }}
+            onMouseUp={() => {
+              stopRecording();
+              setIsRecording(false);
+            }}
+            onTouchStart={() => {
+              startRecording();
+              setIsRecording(true);
+            }}
+            onTouchEnd={() => {
+              stopRecording();
+              setIsRecording(false);
+            }}
+            className={`absolute left-0 top-1/2 ${
+              isRecording ? '-translate-y-6' : '-translate-y-1/2'
+            } w-14 h-14 flex items-center justify-center rounded-full transition-all duration-150 ${
               mode === 'mic' ? 'bg-primary' : 'bg-transparent'
             }`}
+            style={{
+              userSelect: 'none', // 텍스트 선택 막기
+              WebkitUserSelect: 'none', // 사파리/모바일 대응
+              touchAction: 'manipulation', // 터치 동작 최적화
+            }}
           >
-            <Image src="/icons/mic.svg" alt="mic" width={24} height={24} />
+            <Image
+              src="/icons/mic.svg"
+              alt="mic"
+              width={24}
+              height={24}
+              style={{
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                pointerEvents: 'none', // 이미지 자체 클릭/드래그 방지
+              }}
+            />
           </button>
 
           {/* 키보드 버튼 */}
           <button
             onClick={() => handleToggle('keyboard')}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full transition ${
-              mode === 'keyboard' ? 'bg-bg-solid' : 'bg-transparent'
-            }`}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full transition ${mode === 'keyboard' ? 'bg-bg-solid' : 'bg-transparent'}`}
           >
             <Image
               src="/icons/keyboard.svg"
               alt="keyboard"
               width={24}
               height={24}
+              style={{
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                pointerEvents: 'none', // 이미지 자체 클릭/드래그 방지
+              }}
             />
           </button>
         </div>
 
-        {/* 입력 필드 (버튼 밑에 absolute 배치) */}
+        {/* 키보드 입력 필드 */}
         {mode === 'keyboard' && (
           <div className="absolute -bottom-12 w-screen px-4 flex justify-center">
             <TextFieldChat
@@ -140,9 +195,27 @@ export default function VoiceKeyboard({
       </div>
 
       {/* 녹음 상태 표시 */}
-      {isRecording && mode === 'mic' && (
-        <p className="mt-2 text-sm text-red-500">🎤 녹음 중...</p>
-      )}
+      {/* {mode === 'mic' && (
+        <div className="mt-2 flex flex-col items-center">
+          {isRecording ? (
+            <button onClick={stopRecording} className="mb-2 px-4 py-2 bg-red-500 rounded text-white">
+              ⏹️ 녹음 중지
+            </button>
+          ) : (
+            <button onClick={startRecording} className="mb-2 px-4 py-2 bg-blue-500 rounded text-white">
+              ▶️ 녹음 시작
+            </button>
+          )}
+          {audioURL && (
+            <div className="flex flex-col items-center mt-2">
+              <audio controls src={audioURL} className="mb-2" />
+              <a href={audioURL} download="recording" className="text-blue-600 underline">
+                ⬇️ 다운로드
+              </a>
+            </div>
+          )}
+        </div>
+      )} */}
     </div>
   );
 }
