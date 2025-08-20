@@ -79,12 +79,10 @@ export default function VoiceKeyboard({
 
   const handleToggle = (newMode: 'mic' | 'keyboard') => {
     setMode(newMode);
-    if (newMode === 'mic') {
-      stopRecording();
-      startRecording();
-    } else {
-      stopRecording();
+    if (newMode === 'keyboard') {
+      stopRecording(); // 키보드 모드일 때는 녹음 중지
     }
+    // mic 모드일 때는 녹음 시작하지 않음! 눌렀을 때만 녹음
   };
 
   // 키보드 입력
@@ -121,21 +119,24 @@ export default function VoiceKeyboard({
 
           {/* 마이크 버튼 */}
           <button
+            onClick={() => handleToggle('mic')}
             onMouseDown={() => {
-              startRecording();
-              setIsRecording(true);
+              if (mode === 'mic') {
+                startRecording();
+                setIsRecording(true);
+              }
             }}
             onMouseUp={() => {
-              stopRecording();
-              setIsRecording(false);
+              if (mode === 'mic') stopRecording();
             }}
             onTouchStart={() => {
-              startRecording();
-              setIsRecording(true);
+              if (mode === 'mic') {
+                startRecording();
+                setIsRecording(true);
+              }
             }}
             onTouchEnd={() => {
-              stopRecording();
-              setIsRecording(false);
+              if (mode === 'mic') stopRecording();
             }}
             className={`absolute left-0 top-1/2 ${
               isRecording ? '-translate-y-6' : '-translate-y-1/2'
