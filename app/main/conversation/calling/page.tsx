@@ -22,13 +22,19 @@ export default function CallingPage() {
   }, []);
 
   useEffect(() => {
-    let interval: number;
+    let interval: number | undefined;
+
     if (!showConnecting) {
       interval = window.setInterval(() => {
         setCallTime(prev => prev + 1);
       }, 1000);
     }
-    return () => interval && clearInterval(interval);
+
+    return () => {
+      if (interval !== undefined) {
+        window.clearInterval(interval);
+      }
+    };
   }, [showConnecting]);
 
   const formatTime = (seconds: number) => {

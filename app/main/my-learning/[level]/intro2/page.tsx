@@ -20,6 +20,7 @@ export default function LevelIntro2Page() {
 
   // TODO: API 연결
   const phrasesArray = Object.values(text.intro2).filter(
+    // @ts-ignore
     value => value?.id !== undefined,
   );
 
@@ -46,6 +47,7 @@ export default function LevelIntro2Page() {
           className="mb-5"
         />
         {/* 문장 리스트 */}
+        {/* @ts-ignore */}
         <IntroPhrasesListStep2 phrases={phrasesArray} />
       </MotionFadeIn>
       {/* 하단 버튼 */}

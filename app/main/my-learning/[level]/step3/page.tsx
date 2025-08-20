@@ -28,6 +28,7 @@ export default function LevelStep3Page() {
 
   // TODO: API 연결
   const phrasesArray = Object.values(text.intro).filter(
+    // @ts-ignore
     value => value?.id !== undefined,
   );
 
@@ -68,6 +69,7 @@ export default function LevelStep3Page() {
         <div className="text-gray-500 text-trans-cp2-regular mb-4">
           Today&apos;s expression
         </div>
+        {/* @ts-ignore */}
         <IntroPhrasesList phrases={phrasesArray} />
 
         {/* 단어 리스트 */}
