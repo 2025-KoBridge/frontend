@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import { useLanguageStore } from '@/stores/languageStore';
 import { useState } from 'react';
-import { SPELLING_RATING_THRESHOLDS } from '@/constants/rating';
+import {
+  RATING_THRESHOLDS,
+  SPELLING_RATING_THRESHOLDS,
+} from '@/constants/rating';
+import { similarity } from '@/utils/similarity';
 
 interface WordPercentage {
   text: string;
@@ -15,6 +19,7 @@ interface PhrasePracticeTextProps {
   className?: string;
   inputText: string;
   showEvaluation: boolean;
+  evaluationType?: 'mic' | 'keyboard';
 }
 
 export default function PhrasePracticeText({
@@ -24,6 +29,7 @@ export default function PhrasePracticeText({
   className,
   inputText,
   showEvaluation,
+  evaluationType,
 }: PhrasePracticeTextProps) {
   const { currentLanguage } = useLanguageStore();
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -33,14 +39,17 @@ export default function PhrasePracticeText({
 
   const wordPercentages: WordPercentage[] = words.map((w, idx) => ({
     text: w,
-    percentage: typedWords[idx] === w ? 100 : 0,
+    percentage: typedWords[idx] ? similarity(w, typedWords[idx]) : 0,
   }));
 
   const avg =
     wordPercentages.reduce((sum, w) => sum + w.percentage, 0) /
     wordPercentages.length;
 
-  const matched = SPELLING_RATING_THRESHOLDS.find(t => avg >= t.min)!;
+  const thresholds =
+    evaluationType === 'mic' ? RATING_THRESHOLDS : SPELLING_RATING_THRESHOLDS;
+
+  const matched = thresholds.find(t => avg >= t.min)!;
 
   const evaluationResult = {
     rating: typedWords.length > 0 ? matched.rating : 0,

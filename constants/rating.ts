@@ -1,18 +1,18 @@
 export const RATING_THRESHOLDS = [
   {
-    min: 80,
+    min: 100,
     rating: 5,
     feedback: '발음이 아주 정확해!',
     feedbackEn: 'Your pronunciation is perfect!',
   },
   {
-    min: 60,
+    min: 70,
     rating: 4,
     feedback: '발음이 정확해!',
     feedbackEn: 'Your pronunciation is accurate!',
   },
   {
-    min: 40,
+    min: 50,
     rating: 3,
     feedback: '발음이 나쁘지 않은걸?',
     feedbackEn: "Your pronunciation isn't bad?",
@@ -33,19 +33,19 @@ export const RATING_THRESHOLDS = [
 
 export const SPELLING_RATING_THRESHOLDS = [
   {
-    min: 80,
+    min: 100,
     rating: 5,
     feedback: '맞춤법이 아주 정확해!',
     feedbackEn: 'Your spelling is perfect!',
   },
   {
-    min: 60,
+    min: 70,
     rating: 4,
     feedback: '맞춤법이 정확해!',
     feedbackEn: 'Your spelling is accurate!',
   },
   {
-    min: 40,
+    min: 50,
     rating: 3,
     feedback: '맞춤법이 나쁘지 않은걸?',
     feedbackEn: "Your spelling isn't bad?",
