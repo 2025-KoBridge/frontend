@@ -28,7 +28,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div className="flex flex-col h-svh w-svw px-4 bg-gradient-reverse">
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 flex flex-col">{children}</main>
       {showNavbar && <NavigationBar />}
     </div>
   );
