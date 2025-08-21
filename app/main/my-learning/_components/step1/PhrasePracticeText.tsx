@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import { useLanguageStore } from '@/stores/languageStore';
+import { useVoiceStore } from '@/stores/voiceStore';
+import { useTTS } from '@/hooks/useTTS';
 import { useState } from 'react';
 import {
   RATING_THRESHOLDS,
@@ -32,6 +36,8 @@ export default function PhrasePracticeText({
   evaluationType,
 }: PhrasePracticeTextProps) {
   const { currentLanguage } = useLanguageStore();
+  const { selectedVoice } = useVoiceStore();
+  const { playTTS, playing } = useTTS();
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const typedWords = inputText.trim() === '' ? [] : inputText.trim().split(' ');
@@ -86,6 +92,11 @@ export default function PhrasePracticeText({
       );
     });
 
+  const handlePlayAudio = async () => {
+    if (!selectedVoice || playing) return;
+    await playTTS(phrase, selectedVoice.voiceName);
+  };
+
   return (
     <div className={`flex flex-col ${className}`}>
       <div className="px-4 py-4.5 rounded-3xl bg-bg-solid">
@@ -96,15 +107,20 @@ export default function PhrasePracticeText({
           <h2 className="text-h2-bold text-black flex flex-row gap-2">
             {renderHighlightedPhrase()}
           </h2>
-          <Image
-            src={'/icons/audio-blue.svg'}
-            alt={'listen'}
-            width={16}
-            height={16}
-            className={
-              typedWords.length > 0 && showEvaluation ? 'pb-5.5' : 'pb-1.5'
-            }
-          />
+          <button
+            onClick={handlePlayAudio}
+            disabled={playing || !selectedVoice}
+          >
+            <Image
+              src={'/icons/audio-blue.svg'}
+              alt={'listen'}
+              width={16}
+              height={16}
+              className={
+                typedWords.length > 0 && showEvaluation ? 'pb-5.5' : 'pb-1.5'
+              }
+            />
+          </button>
           <button
             onClick={() => setIsBookmarked(prev => !prev)}
             className="focus:outline-none"
