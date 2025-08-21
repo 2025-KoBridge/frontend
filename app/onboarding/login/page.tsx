@@ -6,6 +6,7 @@ import Logo from '@/components/Logo';
 import GoogleSignInButton from './_components/GoogleLoginBtn';
 import { googleLogin } from './_utils/googleLogin';
 import { ROUTES } from '@/constants/routes';
+import Button from '@/components/buttons/_index';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -55,7 +56,12 @@ export default function LoginPage() {
         transition={{ duration: 0.6, delay: 2.4, ease: 'easeIn' }}
         className="mt-10"
       >
-        <GoogleSignInButton onClick={handleGoogleLogin} />
+        {/* <GoogleSignInButton onClick={handleGoogleLogin} /> */}
+        <Button
+          text={'회원가입'}
+          className="w-screen max-w-91"
+          onClick={handleGoogleLogin}
+        />
       </motion.div>
     </div>
   );
