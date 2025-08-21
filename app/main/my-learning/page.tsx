@@ -7,21 +7,26 @@ import LevelButton from './_components/roadmap/LevelButton';
 import { useUserStore } from '@/stores/userStore';
 
 export default function MyLearningPage() {
-  const { username } = useUserStore();
+  const { username, currentLevel } = useUserStore();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const levelData = [
-    { text: '학교에 가자!', subText: "Let's go to School!" },
-    { text: '숙제를 하자!', subText: "Let's do Homework!" },
-    { text: '책 읽기', subText: 'Reading Books' },
-    { text: '운동하기', subText: 'Exercise Time' },
-    { text: '음악 듣기', subText: 'Listening Music' },
-    { text: '영화 보기', subText: 'Watch a Movie' },
-    { text: '친구 만나기', subText: 'Meeting Friends' },
-    { text: '게임 하기', subText: 'Play Games' },
+    { text: '학교에 가자!', subText: "Let's go to school!" },
+    { text: '친구랑 인사하기', subText: 'Greeting with a friend' },
+    { text: '밥 먹으러 가자!', subText: "Let's go eat!" },
+    { text: '길을 물어보기', subText: 'Asking for directions' },
+    { text: '가족 소개하기', subText: 'Introducing family' },
+    { text: '날씨 이야기', subText: 'Talking about the weather' },
+    { text: '쇼핑하기', subText: 'Going shopping' },
+    { text: '취미 이야기', subText: 'Talking about hobbies' },
+    { text: '시간 말하기', subText: 'Telling the time' },
+    { text: '병원 가기', subText: 'Going to the hospital' },
+    // { text: '교통수단 이용하기', subText: 'Using transportation' },
+    // { text: '음식 주문하기', subText: 'Ordering food' },
+    // { text: '학교 생활 이야기', subText: 'Talking about school life' },
+    // { text: '수학여행 가기', subText: 'Going on a school trip' },
+    // { text: '미래 꿈 이야기', subText: 'Talking about future dreams' },
   ];
-
-  const currentLevel = 1; // 현재 레벨 예시
 
   //TODO: 사용자 진도로 자동 스크롤, 커스텀 훅 혹은 유틸로 리팩토링
   useEffect(() => {

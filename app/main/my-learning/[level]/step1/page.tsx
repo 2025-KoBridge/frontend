@@ -25,19 +25,19 @@ export default function LevelStep1Page() {
   //TODO: API 연결
   const phrases = [
     {
-      phrase: '너는 취미가 뭐야?',
-      romanization: 'Neo nun / chui mi ga / muh ya',
-      translation: 'What is your hobby?',
+      phrase: '우리 일 교시 뭐야?',
+      romanization: 'Uri / il / gyosi / moya?',
+      translation: 'What is our first class?',
     },
     {
-      phrase: '오늘 날씨 어때?',
-      romanization: 'Oneul nalssi eottae?',
-      translation: 'How is the weather today?',
+      phrase: '수업 언제 시작해?',
+      romanization: 'Sueop / eonje / sijakhae?',
+      translation: 'When does the class start?',
     },
     {
       phrase: '무슨 음식을 좋아해?',
-      romanization: 'Museun eumsigeul joahae?',
-      translation: 'What food do you like?',
+      romanization: 'Oneul / sukjje / da / haesseo?',
+      translation: 'Did you finish today’s homework?',
     },
   ];
 
