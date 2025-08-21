@@ -13,9 +13,11 @@ import { useLevelParam } from '@/hooks/useLevelParam';
 export default function LevelCompletionPage() {
   const router = useRouter();
   const { currentLanguage } = useLanguageStore();
+  const { username, increaseLevel } = useUserStore();
   const levelParam = useLevelParam();
 
   const handleBtnClick = () => {
+    increaseLevel();
     router.push(ROUTES.MAIN.ROOT);
   };
 
@@ -39,7 +41,7 @@ export default function LevelCompletionPage() {
           className="mt-26 mb-8"
         />
         <CharacterText
-          title={'내일도 즐겁게 공부해 보자!'}
+          title={`내일도 즐겁게 공부해 보자!`}
           subtitle={"Let's have fun studying tomorrow!"}
           audio
         />
