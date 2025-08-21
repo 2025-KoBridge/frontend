@@ -79,10 +79,14 @@ export default function LevelStep3Page() {
         </div>
 
         <div className="grid grid-cols-3 gap-2">
-          {[1, 2, 3].map((item, idx) => (
+          {[
+            { ko: '숙제', en: 'Homework' },
+            { ko: '수업', en: 'Class' },
+            { ko: '1교시', en: 'First class' },
+          ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-2xl p-3">
               <div className="flex flex-row items-center gap-2 mb-1">
-                <h3 className="text-black text-h3-bold">단어{item}</h3>
+                <h3 className="text-black text-h3-bold">{item.ko}</h3>
                 <Image
                   src={'/icons/bookmark-unchecked.svg'}
                   alt={'bookmark icon'}
@@ -92,7 +96,7 @@ export default function LevelStep3Page() {
                 />
               </div>
               <div className="text-secondary-300 text-trans-cp2-regular">
-                단어 뜻 {item}
+                {item.en}
               </div>
             </div>
           ))}

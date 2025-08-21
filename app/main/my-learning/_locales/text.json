@@ -7,16 +7,16 @@
         "jp": "言語を選択してください!\n翻訳に使用します。",
         "chn": "选择一种语言!\n我们将用它进行翻译。"
     },
-    "characterText": "주제는 취미와 좋아하는 것들이야.",
+    "characterText": "오늘의 주제는 학교에 대한 이야기야.",
     "characterSubText": {
         "vt": "Không có ngôn ngữ mà tôi muốn.",
-        "en": "The topics are your hobbies and favorite things.",
+        "en": "Today's topic is about school.",
         "jp": "私の欲しい言語がありません。",
         "chn": "没有我想要的语言。"
     },
     "phrase1": {
         "id": 1,
-        "kor": "너는 취미가 뭐야?",
+        "kor": "우리 1교시 뭐야?",
         "vt": "Không có ngôn ngữ mà tôi muốn.",
         "en": "What is your hobby?",
         "jp": "私の欲しい言語がありません。",
@@ -24,17 +24,17 @@
       },
     "phrase2": {
       "id": 2,
-       "kor": "너는 이름이 뭐야?",
+       "kor": "수업 언제 시작해?",
        "vt": "Không có ngôn ngữ mà tôi muốn.",
-        "en": "What is your name?",
+        "en": "When does the class start?",
         "jp": "あなたの名前は何ですか？",
         "chn": "你叫什么名字？"
     },
     "phrase3": {
       "id": 3,
-       "kor": "가장 좋아하는게 뭐야?",
+       "kor": "오늘 숙제 다 했어?",
        "vt": "Không có ngôn ngữ mà tôi muốn.",
-        "en": "What is your favorite thing?",
+        "en": "Did you finish today’s homework?",
         "jp": "あなたの名前は何ですか？",
         "chn": "你叫什么名字？"
     }
@@ -73,17 +73,17 @@
       },
     "phrase2": {
       "id": 2,
-       "kor": "서로의 취미 공유하기",
+       "kor": "수업 시간 알려주기",
        "vt": "Không có ngôn ngữ mà tôi muốn.",
-        "en": "Sharing each other’s hobbies",
+        "en": "Telling the class schedule",
         "jp": "あなたの名前は何ですか？",
         "chn": "你叫什么名字？"
     },
     "phrase3": {
       "id": 3,
-       "kor": "좋아하는 것 말하기",
+       "kor": "숙제 했는지 물어보기",
        "vt": "Không có ngôn ngữ mà tôi muốn.",
-        "en": "Talking about what you like",
+        "en": "Asking if they did their homework",
         "jp": "あなたの名前は何ですか？",
         "chn": "你叫什么名字？"
     }
