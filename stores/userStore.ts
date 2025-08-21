@@ -11,11 +11,15 @@ interface UserStore {
   setSchool: (school: SchoolOption['value']) => void;
   grade: string;
   setGrade: (grade: string) => void;
+
+  currentLevel: number;
+  setCurrentLevel: (level: number) => void;
+  increaseLevel: () => void;
 }
 
 export const useUserStore = create(
   persist<UserStore>(
-    set => ({
+    (set, get) => ({
       username: '',
       setUsername: name => set({ username: name }),
       age: '',
@@ -24,6 +28,13 @@ export const useUserStore = create(
       setSchool: school => set({ school }),
       grade: '',
       setGrade: grade => set({ grade }),
+
+      currentLevel: 1,
+      setCurrentLevel: level => set({ currentLevel: level }),
+      increaseLevel: () => {
+        const { currentLevel } = get();
+        set({ currentLevel: currentLevel + 1 });
+      },
     }),
     {
       name: 'user-store', // localStorage key
