@@ -1,5 +1,9 @@
+'use client';
+
 import { FONT_CLASS } from '@/constants/languages';
 import { useLanguageStore } from '@/stores/languageStore';
+import { useVoiceStore } from '@/stores/voiceStore';
+import { useTTS } from '@/hooks/useTTS';
 import Image from 'next/image';
 
 interface CharacterTextProps {
@@ -16,6 +20,13 @@ export default function CharacterText({
   image = '/character/default.webp', // 기본 이미지 URL
 }: CharacterTextProps) {
   const { currentLanguage } = useLanguageStore();
+  const { selectedVoice } = useVoiceStore();
+  const { playTTS, playing } = useTTS();
+
+  const handlePlay = async () => {
+    if (!selectedVoice) return; // 선택된 목소리가 없으면 재생하지 않음
+    await playTTS(title, selectedVoice.voiceName);
+  };
 
   return (
     <div className="flex flex-col items-center p-4 w-full">
@@ -29,7 +40,8 @@ export default function CharacterText({
               alt="audio icon"
               width={20}
               height={20}
-              className="mb-1"
+              className="mb-1 cursor-pointer"
+              onClick={handlePlay} // 클릭 시 재생
             />
           )}
         </h2>

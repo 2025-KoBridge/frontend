@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { Role } from './ChatMessageList';
+import { useVoiceStore } from '@/stores/voiceStore';
+import { useTTS } from '@/hooks/useTTS';
 
 export default function ChatBubble({
   role,
@@ -18,6 +20,13 @@ export default function ChatBubble({
   showTranslate?: boolean;
 }) {
   const [showTranslation, setShowTranslation] = useState(false);
+  const { selectedVoice } = useVoiceStore();
+  const { playTTS, playing } = useTTS();
+
+  const handlePlayAudio = async () => {
+    if (!selectedVoice || playing) return;
+    await playTTS(text, selectedVoice.voiceName);
+  };
 
   return (
     <div className={`flex items-end gap-2`}>
@@ -41,12 +50,17 @@ export default function ChatBubble({
         {(showAudio || showTranslate) && (
           <div className="pt-1 flex items-center gap-2">
             {showAudio && (
-              <Image
-                src="/icons/audio-gray.svg"
-                alt="listen"
-                width={16}
-                height={16}
-              />
+              <button
+                onClick={handlePlayAudio}
+                disabled={playing || !selectedVoice}
+              >
+                <Image
+                  src="/icons/audio-gray.svg"
+                  alt="listen"
+                  width={16}
+                  height={16}
+                />
+              </button>
             )}
             {showTranslate && translation && (
               <button onClick={() => setShowTranslation(prev => !prev)}>

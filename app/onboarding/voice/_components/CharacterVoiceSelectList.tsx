@@ -1,46 +1,41 @@
 'use client';
 
-import { voiceData } from '@/constants/voiceData';
+import { useVoiceStore } from '@/stores/voiceStore';
 import SelectButton from '@/components/buttons/select';
 import CharacterVoiceButton from '@/components/buttons/characterVoice';
-import { useLanguageStore } from '@/stores/languageStore';
-import { useVoiceStore } from '@/stores/voiceStore';
 import { useState } from 'react';
+import { useTTS } from '@/hooks/useTTS';
 
 export default function CharacterVoiceSelectList() {
-  const { currentLanguage } = useLanguageStore();
-  const { selectedVoice, setSelectedVoice } = useVoiceStore();
+  const { voices, selectedVoice, setSelectedVoice } = useVoiceStore();
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+  const { playTTS, playing } = useTTS();
 
-  const voices = Object.values(voiceData.selectVoice.characterVoice);
+  const handlePlayVoice = async (idx: number) => {
+    if (playing) return; // 훅에서 재생 중 체크
+    setPlayingIndex(idx);
 
-  const handlePlayVoice = (idx: number) => {
-    if (playingIndex !== null) return; // 이미 재생 중이면 무시
-    setPlayingIndex(idx); // 재생 중 표시
+    const voice = voices[idx];
 
-    const audio = new Audio(`/ttsTest.m4a`);
-    audio.play();
+    await playTTS(voice.sampleText, voice.voiceName);
 
-    audio.addEventListener('ended', () => {
-      setPlayingIndex(null); // 재생 종료 후 표시 해제
-    });
+    // 재생 종료 시, 선택은 유지하고 playing 표시만 초기화
+    setPlayingIndex(null);
   };
 
   return (
     <div className="flex flex-col gap-4">
       {voices.map((voice, idx) => (
         <div
-          key={idx}
+          key={voice.voiceName}
           className="flex flex-row gap-3 items-center justify-between"
         >
-          {/* 왼쪽: 선택 버튼 */}
           <SelectButton
-            text={voice.text}
-            subText={voice.subText[currentLanguage.code]}
-            selected={selectedVoice === idx}
-            onClick={() => setSelectedVoice(idx)}
+            text={voice.displayName}
+            subText={voice.description}
+            selected={selectedVoice?.voiceName === voice.voiceName}
+            onClick={() => setSelectedVoice(voice)}
           />
-          {/* 오른쪽: 미리듣기 버튼 */}
           <CharacterVoiceButton
             onClick={() => handlePlayVoice(idx)}
             selected={playingIndex === idx}
