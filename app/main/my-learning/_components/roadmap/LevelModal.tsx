@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import LevelModalList from './LevelModalList';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/routes';
+import { useUserStore } from '@/stores/userStore';
 
 interface LevelModalProps {
   levelNum: number;
@@ -20,22 +21,29 @@ export default function LevelModal({
   showButton = false,
 }: LevelModalProps) {
   const router = useRouter();
+  const { currentLevel } = useUserStore();
 
   // TODO: API 연동
-  const levelGoals = [
-    {
-      goal: '반갑게 인사하기',
-      sub: "Sharing each other's hobbies.",
-    },
-    {
-      goal: '좋아하는 음식 말하기',
-      sub: 'Talk about your favorite foods.',
-    },
-    {
-      goal: '하루 일과 소개하기',
-      sub: 'Introduce your daily routine.',
-    },
-  ];
+  const levelGoalsMap: Record<number, { goal: string; sub: string }[]> = {
+    1: [
+      {
+        goal: '사용할 문장 알아볼까?',
+        sub: "Let's check out some sentences to use.",
+      },
+      { goal: '같이 대화해볼까?', sub: 'Wanna try a conversation together?' },
+      { goal: '오늘의 레슨은 어땠어?', sub: "How was today's lesson?" },
+    ],
+    2: [
+      { goal: '친구랑 어떻게 말할까?', sub: 'How do you talk with a friend?' },
+      { goal: '인사 연습해보자!', sub: "Let's practice greetings!" },
+      {
+        goal: '오늘 배운 인사, 어땠어?',
+        sub: 'How were the greetings you learned today?',
+      },
+    ],
+  };
+
+  const levelGoals = levelGoalsMap[levelNum] || [];
 
   const handleStart = () => {
     router.push(ROUTES.MAIN.MY_LEARNING.getStep(levelNum, 'intro1'));
@@ -74,6 +82,7 @@ export default function LevelModal({
                 key={idx}
                 levelGoalText={item.goal}
                 levelGoalSubText={item.sub}
+                completeGoal={levelNum !== currentLevel}
               />
             ))}
           </div>
