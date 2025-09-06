@@ -30,3 +30,9 @@ export const ROUTES = {
     MY_PAGE: '/main/my-page',
   },
 };
+
+export const API = {
+  AUTH: {
+    TOKEN: '/api/auth/token',
+  },
+};
