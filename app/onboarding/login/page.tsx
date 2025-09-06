@@ -1,30 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 import Logo from '@/components/Logo';
 import GoogleSignInButton from './_components/GoogleLoginBtn';
-import { googleLogin } from './_utils/googleLogin';
-import { ROUTES } from '@/constants/routes';
-import Button from '@/components/buttons/_index';
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await googleLogin();
-      if (result.success) {
-        router.push(ROUTES.ONBOARDING.SIGNIN.getStep(1));
-      } else {
-        alert('로그인 실패');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('로그인 중 오류가 발생했습니다.');
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center h-svh gap-16">
       {/* Logo */}
@@ -56,12 +36,7 @@ export default function LoginPage() {
         transition={{ duration: 0.6, delay: 2.4, ease: 'easeIn' }}
         className="mt-10"
       >
-        {/* <GoogleSignInButton onClick={handleGoogleLogin} /> */}
-        <Button
-          text={'회원가입'}
-          className="w-screen max-w-91"
-          onClick={handleGoogleLogin}
-        />
+        <GoogleSignInButton />
       </motion.div>
     </div>
   );
